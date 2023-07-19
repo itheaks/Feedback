@@ -15,7 +15,7 @@ class _FeedbackAppState extends State<FeedbackApp> {
   String result = '';
   double percentage = 0.0;
 
-  Color submitButtonColor = Colors.white54;
+  Color submitButtonColor = Colors.purpleAccent;
 
   @override
   Widget build(BuildContext context) {
@@ -37,83 +37,116 @@ class _FeedbackAppState extends State<FeedbackApp> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(25.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your name',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                Expanded( // Wrap SingleChildScrollView with Expanded
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(height: 20.0),
+                        TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            labelText: 'Enter your name',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+                        TextField(
+                          controller: feedbackController,
+                          maxLines: null,
+                          decoration: InputDecoration(
+                            labelText: 'Enter your feedback',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+                        Container(
+                          height: 60,
+                          child: ElevatedButton(
+                            onPressed: () => calculateFeedback(),
+                            child: Text(
+                                'Submit',
+                              style: TextStyle(
+                                color: Colors.purple,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              primary: submitButtonColor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+                        Text(
+                          'Feedback Result:',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 12.0),
+                        Container(
+                          height: 160,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            gradient: _getFeedbackResultGradient(),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                result,
+                                style: TextStyle(
+                                  fontSize: 28.0,
+                                  color: Colors.purple,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.0),
+                        Text(
+                          'Positivity Percentage: ${percentage.toStringAsFixed(2)}%',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(height: 20.0),
+                      ],
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
                   ),
                 ),
-                SizedBox(height: 16.0),
-                TextField(
-                  controller: feedbackController,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your feedback',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    '#Designed by AKS',
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white54,
                     ),
-                    filled: true,
-                    fillColor: Colors.white,
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () => calculateFeedback(),
-                  child: Text('Submit'),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    primary: submitButtonColor,
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                Text(
-                  'Feedback Result:',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    gradient: _getFeedbackResultGradient(),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      result,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  'Positivity Percentage: ${percentage.toStringAsFixed(2)}%',
-                  style: TextStyle(fontSize: 18.0),
                 ),
               ],
             ),
@@ -130,17 +163,17 @@ class _FeedbackAppState extends State<FeedbackApp> {
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       );
-    } else if (percentage < 40) {
+    } else if (percentage < 40 && percentage != 0) {
       return LinearGradient(
         colors: [Colors.red, Colors.white],
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       );
     } else {
-      return LinearGradient(
-        colors: [Colors.yellow, Colors.white],
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
+      return RadialGradient(
+        colors: [Colors.white, Colors.yellow],
+        //begin: Alignment.centerLeft,
+        //end: Alignment.centerRight,
       );
     }
   }
@@ -151,7 +184,7 @@ class _FeedbackAppState extends State<FeedbackApp> {
 
     final positiveWords = [
       'excellent', 'outstanding', 'amazing', 'wonderful', 'fantastic',
-      'impressive', 'superb', 'terrific', 'great', 'brilliant',
+      'impressive', 'superb', 'terrific', 'great', 'okay', 'brilliant',
       'remarkable', 'exceptional', 'good', 'nice', 'awesome',
       'admirable', 'incredible', 'skilled', 'knowledgeable', 'professional',
       'effective', 'efficient', 'high-quality', 'exceptionally well', 'top-notch',
@@ -191,7 +224,7 @@ class _FeedbackAppState extends State<FeedbackApp> {
       'top-level performance', 'outstanding outcomes', 'impressive knowledge', 'consistently exceptional', 'exceptionally talented',
       'exemplary dedication', 'superior execution', 'highly effective', 'brilliant ideas', 'exceptionally well-organized',
       'stellar professionalism', 'impressive collaboration', 'remarkable attention to detail', 'exceptional customer support', 'truly reliable',
-      'outstanding product', 'unparalleled service', 'impressive teamwork', 'excellent cooperation', 'exemplary customer service',
+      'outstanding product', 'correct', 'unparalleled service', 'impressive teamwork', 'excellent cooperation', 'exemplary customer service',
       'fantastic experience', 'top-tier quality', 'exceptional reliability', 'remarkable responsiveness', 'unmatched expertise',
       'truly remarkable performance', 'highly recommendable', 'extraordinary commitment', 'impressive adaptability', 'exceptionally responsive',
       'top-notch service', 'outstanding results', 'exceptional guidance', 'excellent judgment', 'noteworthy dedication',
@@ -252,22 +285,61 @@ class _FeedbackAppState extends State<FeedbackApp> {
       'revoltin',
     ];
 
+    final negativePhrases = [
+      'not', 'never', 'no', "don't", 'ain\'t', 'isn\'t', 'aren\'t',
+      'wasn\'t', 'weren\'t', 'hasn\'t', 'haven\'t', 'hadn\'t', 'doesn\'t',
+      'don\'t', 'didn\'t',
+    ];
+
+    // final feedbackWords = feedback.split(' ');
+    // final positiveCount =
+    //     feedbackWords.where((word) => positiveWords.contains(word)).length;
+    // final negativeCount =
+    //     feedbackWords.where((word) => negativeWords.contains(word)).length;
+    // final totalCount = positiveCount + negativeCount;
     final feedbackWords = feedback.split(' ');
+    final modifiedFeedbackWords = <String>[];
+
+    // for (int i = 0; i < feedbackWords.length; i++) {
+    //   final word = feedbackWords[i];
+    //
+    //   if (negativePhrases.contains(word)) {
+    //     modifiedFeedbackWords.add(word);
+    //     for (int j = i + 1; j < feedbackWords.length; j++) {
+    //       final nextWord = feedbackWords[j];
+    //       if (positiveWords.contains(nextWord)) {
+    //         modifiedFeedbackWords.add('not ' + nextWord);
+    //         break;
+    //       } else if (negativeWords.contains(nextWord)) {
+    //         modifiedFeedbackWords.add(nextWord);
+    //         break;
+    //       }
+    //       modifiedFeedbackWords.add(nextWord);
+    //     }
+    //   } else {
+    //     modifiedFeedbackWords.add(word);
+    //   }
+    // }
+    // final positiveCount =
+    //     feedbackWords.where((word) => positiveWords.contains(word)).length;
     final positiveCount =
         feedbackWords.where((word) => positiveWords.contains(word)).length;
     final negativeCount =
         feedbackWords.where((word) => negativeWords.contains(word)).length;
-    final totalCount = positiveCount + negativeCount;
+    final negativePhraseCount =
+        feedbackWords.where((word) => negativePhrases.contains(word)).length;
+    final totalCount = positiveCount + negativeCount + negativePhraseCount;
 
     if (totalCount > 0) {
-      final positivity = positiveCount / totalCount;
-      percentage = (positivity * 100).roundToDouble();
+      final score = positiveCount + negativeCount * -1 + negativePhraseCount * -2;
+      final positivity = score / totalCount;
+      percentage = ((positivity) * 100).roundToDouble();
       if (percentage > 60) {
         setState(() {
           result = 'Positive';
           submitButtonColor = Colors.green;
         });
-      } else if (percentage < 40) {
+      } else if (percentage < 40 && percentage != 0) {
         setState(() {
           result = 'Negative';
           submitButtonColor = Colors.red;
