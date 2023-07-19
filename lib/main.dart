@@ -291,37 +291,9 @@ class _FeedbackAppState extends State<FeedbackApp> {
       'don\'t', 'didn\'t',
     ];
 
-    // final feedbackWords = feedback.split(' ');
-    // final positiveCount =
-    //     feedbackWords.where((word) => positiveWords.contains(word)).length;
-    // final negativeCount =
-    //     feedbackWords.where((word) => negativeWords.contains(word)).length;
-    // final totalCount = positiveCount + negativeCount;
     final feedbackWords = feedback.split(' ');
     final modifiedFeedbackWords = <String>[];
 
-    // for (int i = 0; i < feedbackWords.length; i++) {
-    //   final word = feedbackWords[i];
-    //
-    //   if (negativePhrases.contains(word)) {
-    //     modifiedFeedbackWords.add(word);
-    //     for (int j = i + 1; j < feedbackWords.length; j++) {
-    //       final nextWord = feedbackWords[j];
-    //       if (positiveWords.contains(nextWord)) {
-    //         modifiedFeedbackWords.add('not ' + nextWord);
-    //         break;
-    //       } else if (negativeWords.contains(nextWord)) {
-    //         modifiedFeedbackWords.add(nextWord);
-    //         break;
-    //       }
-    //       modifiedFeedbackWords.add(nextWord);
-    //     }
-    //   } else {
-    //     modifiedFeedbackWords.add(word);
-    //   }
-    // }
-    // final positiveCount =
-    //     feedbackWords.where((word) => positiveWords.contains(word)).length;
     final positiveCount =
         feedbackWords.where((word) => positiveWords.contains(word)).length;
     final negativeCount =
