@@ -333,7 +333,7 @@ class _FeedbackAppState extends State<FeedbackApp> {
     if (totalCount > 0) {
       final score = positiveCount + negativeCount * -1 + negativePhraseCount * -2;
       final positivity = score / totalCount;
-      percentage = ((positivity) * 100).roundToDouble();
+      percentage = ((positivity + 1) * 50).roundToDouble();
       if (percentage > 60) {
         setState(() {
           result = 'Positive';
