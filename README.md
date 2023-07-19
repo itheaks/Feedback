@@ -1,21 +1,57 @@
-<<<<<<< HEAD
-# feedback
+# Feedback App
 
-A new Flutter project.
+## Description
+The Feedback App is a Flutter-based Android application that allows users to provide their feedback by entering their name and feedback message. The app calculates the positivity percentage of the feedback and displays it with a color-coded box.
 
-## Getting Started
+## Screenshots
+#### Ios / Android
+![image](https://github.com/itheaks/Feedback/assets/134759689/981453c1-09fd-4b50-aadb-78a18e5bc944)
 
-This project is a starting point for a Flutter application.
+#### Web / Desktop
+![image](https://github.com/itheaks/Feedback/assets/134759689/b34b93fb-3fed-4a1f-8130-4ec9eebaa6b2)
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+- Input form to collect user feedback.
+- Calculate positivity percentage based on the feedback.
+- Display the color-coded box based on the positivity percentage.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Word Datasets
+The app utilizes three datasets to calculate the positivity percentage:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# Feedback
-A simple application which will tell how much positive is your feedback based on that it will show positivity.
->>>>>>> e7beb488da527780c4bc0061cfef87b92bdd5713
+### Positive Words
+Words in this dataset are considered positive and are assigned a value of +1.
+
+Example positive words: excellent, outstanding, amazing, wonderful, fantastic.
+
+### Negative Words
+Words in this dataset are considered negative and are assigned a value of -1.
+
+Example negative words: poor, bad, terrible, disappointing, frustrating.
+
+### Modifier Words
+Modifier words have the ability to change the sentiment of other words. In this dataset, modifier words are assigned a value of -2 because they can convert positive words into negative ones.
+
+Example modifier words: not, never, no, don't.
+
+## Technologies Used
+- Flutter
+- Dart
+
+
+## Installation
+1. Clone the repository
+2. Open the project in your preferred Flutter development environment.
+3. Run the app on an Android emulator or physical device.
+
+## Usage
+1. Enter your name and feedback in the provided input fields.
+2. Click on the "Submit" button.
+3. The app will calculate the positivity percentage based on the feedback and the word datasets.
+4. It will then display the positivity percentage along with a color-coded box:
+   - Green: Positivity percentage > 60%
+   - Yellow: Positivity percentage < 60% and > 40%
+   - Red: Positivity percentage < 40%
+
+
+## Contact
+If you have any questions or feedback, feel free to reach out to us at [help@itheaks.com](mailto:amigonest@gmail.com).
