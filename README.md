@@ -53,5 +53,5 @@ Example modifier words: not, never, no, don't.
    - Red: Positivity percentage < 40%
 
 
-## Contact
+## Contacts
 If you have any questions or feedback, feel free to reach out to us at [help@itheaks.com](mailto:amigonest@gmail.com). Help Us to Grow
