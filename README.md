@@ -28,7 +28,7 @@ Words in this dataset are considered negative and are assigned a value of -1.
 
 Example negative words: poor, bad, terrible, disappointing, frustrating.
 
-### Modifier Words
+### Modifier Words or Super negative Words
 Modifier words have the ability to change the sentiment of other words. In this dataset, modifier words are assigned a value of -2 because they can convert positive words into negative ones.
 
 Example modifier words: not, never, no, don't.
