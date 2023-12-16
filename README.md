@@ -1,6 +1,6 @@
 # Feedback Application
 
-## Description
+## Descriptions
 The Feedback App is a Flutter-based Android application that allows users to provide their feedback by entering their name and feedback message. The app calculates the positivity percentage of the feedback and displays it with a color-coded box.
 
 ## Screenshots
